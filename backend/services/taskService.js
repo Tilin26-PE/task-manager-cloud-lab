@@ -4,4 +4,17 @@ function getAllTasks() {
     return readTasks();
 }
 
-module.exports = { getAllTasks };
+function addTask(title) {
+    const tasks = readTasks();
+    const newTask = {
+        id: Date.now().toString(),
+        title: title.trim(),
+        completed: false,
+        createdAt: new Date().toISOString()
+    };
+    tasks.push(newTask);
+    writeTasks(tasks);
+    return newTask;
+}
+
+module.exports = { getAllTasks, addTask };
