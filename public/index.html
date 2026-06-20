@@ -1,29 +1,117 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task Manager</title>
+    <title>Task Manager Cloud Lab</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-    <div class="container">
-        <h1>📋 Task Manager</h1>
-
-        <div class="task-form">
-            <input
-                type="text"
-                id="taskInput"
-                placeholder="Ingrese una tarea"
-            >
-            <button onclick="addTask()">
-                Agregar
-            </button>
+    <header class="header">
+        <div class="logo">
+            <i class="fas fa-cloud fa-2x"></i>
+            <div>
+                <h1>Task Manager</h1>
+                <p>Cloud Lab - Gestión de tareas</p>
+            </div>
         </div>
+    </header>
 
-        <ul id="taskList"></ul>
-    </div>
+    <main class="container">
+
+        <section class="card add-task-section">
+            <div class="card-header">
+                <i class="fas fa-plus-circle"></i>
+                <h2>Crear nueva tarea</h2>
+            </div>
+
+            <form id="taskForm" class="task-form">
+                <input 
+                    type="text"
+                    id="taskInput"
+                    placeholder="Ejemplo: Configurar despliegue en Azure"
+                    required
+                >
+                <button type="submit" id="addButton">
+                    <i class="fas fa-plus"></i> Agregar
+                </button>
+            </form>
+        </section>
+
+        <section class="card task-list-section">
+            <div class="task-header-wrapper">
+                <div class="task-header-title">
+                    <i class="fas fa-tasks"></i>
+                    <h2>Lista de tareas</h2>
+                    <span id="taskCounter" class="badge">
+                        0
+                    </span>
+                </div>
+                
+                <div class="task-filters">
+                    <button class="filter-btn active" data-filter="all">Todas</button>
+                    <button class="filter-btn" data-filter="pending">Pendientes</button>
+                    <button class="filter-btn" data-filter="completed">Completadas</button>
+                </div>
+            </div>
+
+            <ul id="taskList">
+                </ul>
+
+            <div id="emptyMessage" class="empty-message">
+                <i class="fas fa-clipboard-list fa-3x"></i>
+                <p>No hay tareas registradas</p>
+                <span>¡Empieza agregando una arriba!</span>
+            </div>
+        </section>
+
+        <section class="card information">
+            <div class="card-header">
+                <i class="fas fa-info-circle"></i>
+                <h2>Información del Proyecto (S13)</h2>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-item">
+                    <i class="fab fa-html5 tech-icon html"></i>
+                    <div>
+                        <strong>Tecnología</strong>
+                        <p>HTML / CSS / JS</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <i class="fab fa-github tech-icon git"></i>
+                    <div>
+                        <strong>Control</strong>
+                        <p>GitHub Colaborativo</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <i class="fas fa-server tech-icon cloud"></i>
+                    <div>
+                        <strong>Despliegue</strong>
+                        <p>Cloud Platform (AWS/Azure/GCP)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <p>
+            © 2026 <strong>CloudTech Solutions</strong> | Laboratorio S13
+        </p>
+    </footer>
 
     <script src="script.js"></script>
 

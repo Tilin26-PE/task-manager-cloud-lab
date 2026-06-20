@@ -1,56 +1,286 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+/* --- Variables y Reset --- */
+:root {
+    --primary-color: #3a86ff; /* Azul Cloud */
+    --secondary-color: #8338ec; /* Morado Tech */
+    --bg-color: #f0f4f8;
+    --card-bg: #ffffff;
+    --text-main: #2d3436;
+    --text-muted: #636e72;
+    --border-color: #dfe6e9;
+    --success-color: #00b894;
+    --danger-color: #ff7675;
+    --shadow: 0 10px 20px rgba(0,0,0,0.05);
+    --transition: all 0.3s ease;
+    --font-family: 'Poppins', sans-serif;
 }
 
-body{
-    font-family:Arial, sans-serif;
-    background:#f4f4f4;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.container{
-    width:80%;
-    max-width:600px;
-    margin:50px auto;
-    background:white;
-    padding:20px;
-    border-radius:10px;
-    box-shadow:0 0 10px rgba(0,0,0,.2);
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow-x: hidden;
 }
 
-h1{
-    text-align:center;
-    margin-bottom:20px;
+/* --- Layout Contenedor --- */
+.container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 20px;
+    padding-bottom: 60px; /* Espacio para el footer */
 }
 
-.task-form{
-    display:flex;
-    gap:10px;
+/* --- Header --- */
+.header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 2rem 0;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-input{
-    flex:1;
-    padding:10px;
+.header .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
 }
 
-button{
-    padding:10px 15px;
-    background:#007bff;
-    color:white;
-    border:none;
-    cursor:pointer;
+.header h1 {
+    font-weight: 600;
+    font-size: 2.2rem;
+    letter-spacing: -1px;
 }
 
-button:hover{
-    background:#0056b3;
+.header p {
+    font-weight: 300;
+    opacity: 0.9;
+    font-size: 1rem;
 }
 
-li{
-    list-style:none;
-    padding:10px;
-    margin-top:10px;
-    background:#eee;
-    display:flex;
-    justify-content:space-between;
+/* --- Cards (Estilo General) --- */
+.card {
+    background-color: var(--card-bg);
+    border-radius: 15px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: var(--transition);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1.2rem;
+    color: var(--primary-color);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+.card h2 {
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: var(--text-main);
+}
+
+/* --- Sección Agregar Tarea --- */
+.task-form {
+    display: flex;
+    gap: 10px;
+}
+
+#taskInput {
+    flex-grow: 1;
+    padding: 12px 15px;
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    font-family: var(--font-family);
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+#taskInput:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(58, 134, 255, 0.1);
+}
+
+#addButton {
+    padding: 0 20px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-family: var(--font-family);
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#addButton:hover {
+    background-color: #2977f5;
+    transform: scale(1.03);
+}
+
+/* --- Sección Lista de Tareas y Filtros --- */
+.task-header-wrapper {
+    margin-bottom: 1rem;
+}
+
+.task-header-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.badge {
+    background-color: var(--border-color);
+    color: var(--text-main);
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-left: 10px;
+}
+
+.task-filters {
+    display: flex;
+    gap: 5px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+.filter-btn {
+    background: none;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    color: var(--text-muted);
+    font-family: var(--font-family);
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.filter-btn:hover {
+    background-color: rgba(58, 134, 255, 0.05);
+    color: var(--primary-color);
+}
+
+.filter-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+    box-shadow: 0 4px 10px rgba(58, 134, 255, 0.2);
+}
+
+/* Estilos para los elementos de lista dinámicos (JS) */
+#taskList {
+    list-style: none;
+}
+
+.task-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--border-color);
+    transition: var(--transition);
+    animation: fadeIn 0.5s ease;
+}
+
+.task-item:last-child {
+    border-bottom: none;
+}
+
+.task-item:hover {
+    background-color: #fafbfc;
+}
+
+.task-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Estilo personalizado del checkbox */
+.task-item input[type="checkbox"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    transition: var(--transition);
+}
+
+.task-item input[type="checkbox"]:checked {
+    background-color: var(--success-color);
+    border-color: var(--success-color);
+}
+
+.task-item input[type="checkbox"]:checked::after {
+    content: '\f00c';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    color: white;
+    font-size: 12px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Estado completado */
+.task-item.completed span {
+    text-decoration: line-through;
+    color: var(--text-muted);
+    opacity: 0.7;
+}
+
+.delete-btn {
+    background: none;
+    border: none;
+    color: var(--danger-color);
+    cursor: pointer;
+    opacity: 0.5;
+    transition: var(--transition);
+    font-size: 1.1rem;
+    padding: 5px;
+}
+
+.task-item:hover .delete-btn {
+    opacity: 1;
+}
+
+.delete-btn:hover {
+    transform: scale(1.2) rotate(5deg);
+}
+
+/* Mensaje Vacío */
+.empty-message {
+    text-align: center;
+    padding: 2rem 0;
+    color: var(--text-muted);
+    display: flex; /* <-- Cámbialo a flex para que sea visible */
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
 }
