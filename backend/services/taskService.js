@@ -17,4 +17,21 @@ function addTask(title) {
     return newTask;
 }
 
-module.exports = { getAllTasks, addTask };
+function toggleTask(id) {
+    const tasks = readTasks();
+    const task = tasks.find(t => t.id === id);
+    if (!task) return null;
+    task.completed = !task.completed;
+    writeTasks(tasks);
+    return task;
+}
+
+function deleteTask(id) {
+    const tasks = readTasks();
+    const filtered = tasks.filter(t => t.id !== id);
+    const deleted = filtered.length !== tasks.length;
+    writeTasks(filtered);
+    return deleted;
+}
+
+module.exports = { getAllTasks, addTask, toggleTask, deleteTask };
