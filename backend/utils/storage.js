@@ -13,4 +13,8 @@ function readTasks() {
     }
 }
 
-module.exports = { readTasks };
+function writeTasks(tasks) {
+    fs.writeFileSync(DATA_FILE, JSON.stringify(tasks, null, 2), 'utf-8');
+}
+
+module.exports = { readTasks, writeTasks };
